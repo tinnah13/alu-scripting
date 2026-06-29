@@ -16,7 +16,6 @@ def top_ten(subreddit):
     Returns:
         None: Prints titles or None if invalid subreddit
     """
-    # Set up the URL and headers
     url = f"https://www.reddit.com/r/{subreddit}/hot.json"
     headers = {
         'User-Agent': 'My User Agent 1.0'
@@ -26,11 +25,9 @@ def top_ten(subreddit):
     }
     
     try:
-        # Make the request without following redirects
         response = requests.get(url, headers=headers, params=params, 
                                allow_redirects=False)
         
-        # Check if the request was successful and not a redirect
         if response.status_code == 200:
             data = response.json()
             posts = data.get('data', {}).get('children', [])
